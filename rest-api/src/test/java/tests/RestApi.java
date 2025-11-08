@@ -3,10 +3,12 @@ package tests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.oneOf;
 
 class RestApi {
@@ -38,21 +40,24 @@ class RestApi {
 
         @Test
         void sendContactMessageShouldReturn201() {
+            String body = """
+                        {
+                        "your-name": "Jan Kowalski",
+                        "your-email": "jan.kowalski@example.com",
+                        "your-subject": "Zapytanie testowe",
+                        "your-message": "To jest test automatycznego wysłania formularza kontaktowego."
+                        }
+                    """;
+
             given()
                     .contentType(ContentType.JSON)
-                    .body("""
-                {
-                "name": "Jan Kowalski",
-                "email": "jan@example.com",
-                "subject": "Test",
-                "message": "To jest test wiadomości."
-                }
-            """)
+                    .body(body)
                     .when()
-                    .post("/api/contact")
+                    .post("/wp-json/contact-form-7/v1/contact-forms/123/feedback")
                     .then()
-                    .statusCode(oneOf(200, 201));
-    }
+                    .statusCode(201)
+                    .body("success", equalTo(true));
+        }
         @Test
         void contactPageShouldBeAccessible() {
             when()
