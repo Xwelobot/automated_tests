@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.tobol'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.23.0'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+    testImplementation 'io.rest-assured:rest-assured:5.5.0'
+    testImplementation 'io.rest-assured:json-path:5.5.0'
+    testImplementation 'io.rest-assured:xml-path:5.5.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.23.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    // (opcjonalne) — fajne logi z REST Assured
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

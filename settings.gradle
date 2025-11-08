@@ -1,0 +1,3 @@
+rootProject.name = 'automated_tests'
+include 'rest-api'
+
