@@ -10,6 +10,9 @@ public class ProductPage extends WebDriverAbst{
     WebElement firstProductAddToCart;
 
     @FindBy(xpath = "/html/body/div[1]/div[1]/div/div/main/div/div[2]/div[2]/form/button")
+    WebElement addProduct;
+
+    @FindBy(xpath = "/html/body/div[1]/div[1]/div/div/main/div/div[1]/div/a")
     WebElement goToCartButton;
 
     public ProductPage(WebDriver driver) {
@@ -18,6 +21,10 @@ public class ProductPage extends WebDriverAbst{
 
     public void addFirstProductToCart() {
         firstProductAddToCart.click();
+    }
+
+    public void addProduct(){
+        addProduct.click();
     }
 
     public void goToCart() {

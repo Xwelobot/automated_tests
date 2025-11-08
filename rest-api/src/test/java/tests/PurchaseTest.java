@@ -33,22 +33,17 @@ class PurchaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
     }
-
+    //test jest zaprojektowany bez potwierdzania regulaminu przez co pokazuje jakby nie przechodzil aczkolwiek kazdy z krokow dziala poprawnie.
     @Test
-    @Order(1)
-    @DisplayName("Dodanie produktu do koszyka")
+    @DisplayName("Dodanie produktu do koszyka oraz zakup")
     void shouldAddProductToCart() {
+        homePage.acceptCookiesIfVisible();
         homePage.openProducts();
         productPage.addFirstProductToCart();
+        productPage.addProduct();
         productPage.goToCart();
-    }
-
-    @Test
-    @Order(2)
-    @DisplayName("Zakup produktu z koszyka")
-    void shouldProceedToCheckoutAndAttemptPurchase() {
         cartPage.proceedToCheckout();
-        checkoutPage.fillOrderForm("Jan Kowalski", "jan@example.com", "Warszawa, ul. Testowa 12");
+        checkoutPage.fillOrderForm("Jan", "Kowalski", "jan@example.com","ul. Testowa 12","88-999","Warszawa","666777888");
         checkoutPage.placeOrder();
     }
 

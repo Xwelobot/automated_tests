@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CartPage extends WebDriverAbst{
 
-    @FindBy(xpath = "/html/body/div[1]/div[1]/div/div/main/div/div[1]/div/a")
+    @FindBy(xpath = "/html/body/div[1]/div[1]/div/div/main/article/div/div/div[2]/div/div/a")
     WebElement checkoutButton;
 
     public CartPage(WebDriver driver) {
