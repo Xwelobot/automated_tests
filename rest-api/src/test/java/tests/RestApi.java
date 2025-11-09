@@ -3,7 +3,6 @@ package tests;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -65,7 +64,7 @@ class RestApi {
                     .then()
                     .statusCode(200)
                     .body(containsString("Kontakt"));
-    }
+        }
 
         @Test
         void robotsTxtShouldExist() {
@@ -73,7 +72,7 @@ class RestApi {
                     .get("/robots.txt")
                     .then()
                     .statusCode(oneOf(200, 404));
-    }
+        }
 
         @Test
         void faviconShouldBeAccessible() {
@@ -81,5 +80,5 @@ class RestApi {
                     .get("/favicon.ico")
                     .then()
                     .statusCode(oneOf(200, 304)); // często cache'owany
-    }
+        }
 }
