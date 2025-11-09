@@ -1,6 +1,5 @@
 package tests;
 
-import pages.ContactFormPOM;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.ContactFormPage;
 import pages.HomePage;
 
 import java.time.Duration;
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ContactTests {
 
     static WebDriver driver;
-    static ContactFormPOM contactForm;
+    static ContactFormPage contactForm;
     static HomePage homePage;
 
     @BeforeAll
@@ -28,7 +28,7 @@ class ContactTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get("https://designvalue.pl/kontakt");
         homePage = new HomePage(driver);
-        contactForm = new ContactFormPOM(driver);
+        contactForm = new ContactFormPage(driver);
     }
 
     @AfterAll

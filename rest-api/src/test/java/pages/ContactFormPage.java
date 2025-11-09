@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ContactFormPOM extends WebDriverAbst {
+public class ContactFormPage extends WebDriverAbst {
 
     // Imię i nazwisko
     @FindBy(name = "your-name")
@@ -26,7 +26,7 @@ public class ContactFormPOM extends WebDriverAbst {
     @FindBy(xpath = "/html/body/div[1]/div/div/div/main/article/div/div/section[2]/div/div[2]/div/div[3]/div/div/div/form/p[5]/small/input")
     WebElement submitButton;
 
-    public ContactFormPOM(WebDriver driver) {
+    public ContactFormPage(WebDriver driver) {
         super(driver);
     }
 
