@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.HomePage;
+
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,12 +18,16 @@ class ContactTests {
 
     static WebDriver driver;
     static ContactFormPOM contactForm;
+    static HomePage homePage;
 
     @BeforeAll
     static void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get("https://designvalue.pl/kontakt");
+        homePage = new HomePage(driver);
         contactForm = new ContactFormPOM(driver);
     }
 
@@ -32,9 +39,7 @@ class ContactTests {
     @Test
     @DisplayName("Wypełnienie i wysłanie formularza kontaktowego DesignValue.pl")
     void testContactFormSubmission() throws InterruptedException {
-        driver.get("https://designvalue.pl/kontakt");
-        Thread.sleep(2000);
-
+        homePage.acceptCookiesIfVisible();
         contactForm.enterName("Jan Kowalski");
         contactForm.enterEmail("jan.kowalski@example.com");
         contactForm.enterSubject("Zapytanie testowe");

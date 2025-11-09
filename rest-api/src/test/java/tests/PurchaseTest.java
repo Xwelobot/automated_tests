@@ -11,7 +11,8 @@ import pages.ProductPage;
 
 import java.time.Duration;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class PurchaseTest {
 
     WebDriver driver;
@@ -33,7 +34,7 @@ class PurchaseTest {
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
     }
-    //test jest zaprojektowany bez potwierdzania regulaminu przez co pokazuje jakby nie przechodzil aczkolwiek kazdy z krokow dziala poprawnie.
+
     @Test
     @DisplayName("Dodanie produktu do koszyka oraz zakup")
     void shouldAddProductToCart() {
@@ -45,6 +46,10 @@ class PurchaseTest {
         cartPage.proceedToCheckout();
         checkoutPage.fillOrderForm("Jan", "Kowalski", "jan@example.com","ul. Testowa 12","88-999","Warszawa","666777888");
         checkoutPage.placeOrder();
+
+        String pageSource = driver.getPageSource();
+        assertTrue(
+                pageSource.contains("Twoja wiadomość została wysłana. Dziękujemy!"));
     }
 
     @AfterEach
